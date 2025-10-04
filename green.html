@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Lens - AI Sustainability Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1a5a3a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #5a6c7d;
+            font-weight: 300;
+        }
+
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        h2 {
+            color: #1a5a3a;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-left: 4px solid #4caf50;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #2d5a3a;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        .vision-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .vision-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+            border-radius: 8px;
+            border-left: 3px solid #4caf50;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .aitp-box {
+            background: linear-gradient(135deg, #1a5a3a 0%, #2d7a4a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .aitp-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .aitp-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .aitp-box li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+
+        .aitp-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #81c784;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #f5f5f5;
+            color: #1a5a3a;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f9fdf9;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .comparison-card {
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-card.current {
+            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
+            border: 2px solid #ef5350;
+        }
+
+        .comparison-card.greenlens {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+        }
+
+        .comparison-card:hover {
+            transform: scale(1.03);
+        }
+
+        .comparison-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .metric {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 20px 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3f7fd 100%);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .impact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .impact-title {
+            font-weight: 600;
+            color: #1a5a3a;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #5a6c7d;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #4caf50 0%, #81c784 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🌱</div>
+            <h1>Green Lens</h1>
+            <p class="tagline">Real-Time AI Sustainability Toolkit</p>
+            <p class="tagline" style="margin-top: 10px;">Transforming AI Development with Transparent Environmental Insights</p>
+        </header>
+
+        <section>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                AI is accelerating global innovation—but comes with hidden environmental costs. Training and inference of AI models consume <span class="highlight">energy, water, and materials</span>, often without real-time visibility. <strong>Green Lens</strong> addresses this by measuring, analyzing, and reporting AI's environmental impact <strong>per query, per task, and across lifecycle stages</strong>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Our Vision</h2>
+            <div class="vision-points">
+                <div class="vision-card">
+                    <strong>📊 Accurate Assessment</strong>
+                    <p>Carbon, water, and material footprint measurement</p>
+                </div>
+                <div class="vision-card">
+                    <strong>🔄 Comparability</strong>
+                    <p>Across models, infrastructures, and geographies</p>
+                </div>
+                <div class="vision-card">
+                    <strong>💡 Actionable Insights</strong>
+                    <p>Reduce environmental impact with recommendations</p>
+                </div>
+                <div class="vision-card">
+                    <strong>🚀 Wide Adoption</strong>
+                    <p>For AI companies, developers, and regulators</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Innovation: AITP Protocol</h2>
+            <div class="aitp-box">
+                <h3>AI Telemetry & Sustainability Protocol</h3>
+                <p style="margin-bottom: 15px;">Green Lens introduces AITP, a new standard for real-time AI sustainability:</p>
+                <ul>
+                    <li>Embedded telemetry in ML frameworks (PyTorch, TensorFlow, JAX)</li>
+                    <li>Tracks energy, carbon, and water footprints per query, per inference, and per training run</li>
+                    <li>Allocates environmental impact in shared/multi-tenant systems</li>
+                    <li>Standardizes functional units for comparability:
+                        <ul style="margin-left: 25px; margin-top: 8px;">
+                            <li>LLMs: per 1M tokens</li>
+                            <li>Vision models: per 1,000 images</li>
+                            <li>Recommendation systems: per user/day</li>
+                        </ul>
+                    </li>
+                    <li>Provides user-facing "carbon & water labels" to raise awareness</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Toolkit Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Focus Area</th>
+                        <th>Method</th>
+                        <th>Deliverable</th>
+                        <th>Novelty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Carbon Footprint</strong></td>
+                        <td>Live GPU/CPU telemetry → CO₂eq conversion</td>
+                        <td>Per-query emissions logging</td>
+                        <td>Real-time, per-query metrics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Water Footprint</strong></td>
+                        <td>Energy × WUE × Geo-Aware Index</td>
+                        <td>Per-query water consumption</td>
+                        <td>Reflects water scarcity context</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Real-Time Monitoring</strong></td>
+                        <td>JSON/CSV logs + live plots</td>
+                        <td>Live dashboard</td>
+                        <td>Instant environmental insights</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimization Insights</strong></td>
+                        <td>Rule-based recommendations</td>
+                        <td>Energy/water reduction tips</td>
+                        <td>Actionable sustainability improvements</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lifecycle Assessment</strong></td>
+                        <td>Training + inference + data + hardware</td>
+                        <td>Sustainability Scorecard</td>
+                        <td>Full lifecycle per-unit impact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comparative Analysis</strong></td>
+                        <td>AI vs AI or AI vs non-AI</td>
+                        <td>Side-by-side scorecards</td>
+                        <td>Informed trade-off evaluation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Sample Output</h2>
+            <h3>Per-Query Footprint</h3>
+            <div class="code-block">Query: "Translate 1000 sentences from English → French"
+Elapsed Time: 0.37 sec
+Energy: 0.005 kWh
+Carbon: 0.002 kg CO₂eq
+Water: 0.009 L
+Recommendation: Use distilled model to save ~0.001 kg CO₂eq per 1000 tokens</div>
+
+            <h3>Sustainability Scorecard</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Energy (kWh)</th>
+                        <th>Carbon (kg CO₂eq)</th>
+                        <th>Water (L)</th>
+                        <th>Per-Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Training</td>
+                        <td>12.5</td>
+                        <td>5.2</td>
+                        <td>22.5</td>
+                        <td>0.10 / 1M tokens</td>
+                    </tr>
+                    <tr>
+                        <td>Inference</td>
+                        <td>3.1</td>
+                        <td>1.4</td>
+                        <td>4.8</td>
+                        <td>0.02 / 1M tokens</td>
+                    </tr>
+                    <tr style="background: #f5f5f5; font-weight: bold;">
+                        <td>Total</td>
+                        <td>15.6</td>
+                        <td>6.6</td>
+                        <td>27.3</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Current Solutions vs Green Lens</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card current">
+                    <h4>❌ Current Tools</h4>
+                    <div class="metric"><strong>Granularity:</strong> Aggregated metrics only</div>
+                    <div class="metric"><strong>Carbon:</strong> Estimates, no geo-adjustment</div>
+                    <div class="metric"><strong>Water:</strong> Rarely included</div>
+                    <div class="metric"><strong>Lifecycle:</strong> Partial coverage</div>
+                    <div class="metric"><strong>User Awareness:</strong> None</div>
+                    <div class="metric"><strong>Comparability:</strong> Inconsistent units</div>
+                    <div class="metric"><strong>Insights:</strong> Rare recommendations</div>
+                    <div class="metric"><strong>Benchmarking:</strong> Fragmented</div>
+                </div>
+                <div class="comparison-card greenlens">
+                    <h4>✅ Green Lens</h4>
+                    <div class="metric"><strong>Granularity:</strong> Real-time, per-query</div>
+                    <div class="metric"><strong>Carbon:</strong> Accurate + location-aware</div>
+                    <div class="metric"><strong>Water:</strong> WUE + scarcity index</div>
+                    <div class="metric"><strong>Lifecycle:</strong> Full coverage</div>
+                    <div class="metric"><strong>User Awareness:</strong> Carbon & water labels</div>
+                    <div class="metric"><strong>Comparability:</strong> Standardized units</div>
+                    <div class="metric"><strong>Insights:</strong> Automated optimization</div>
+                    <div class="metric"><strong>Benchmarking:</strong> Universal suite</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Why Green Lens Matters</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-icon">💡</div>
+                    <div class="impact-title">Innovation</div>
+                    <p>First real-time per-query AI footprint toolkit</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">🎯</div>
+                    <div class="impact-title">Accuracy</div>
+                    <p>Telemetry-driven, not proxy estimates</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">⚡</div>
+                    <div class="impact-title">Feasibility</div>
+                    <p>Lightweight Python, cloud-agnostic</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">🌍</div>
+                    <div class="impact-title">Impact</div>
+                    <p>Enables sustainable AI decisions</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">📢</div>
+                    <div class="impact-title">Awareness</div>
+                    <p>Increases carbon & water literacy</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+            <h2 style="border: none; padding: 0;">Ready to Try Green Lens?</h2>
+            <p style="margin: 20px 0; font-size: 1.1rem;">Experience our prototype and see real-time AI sustainability in action</p>
+            <a href="#" class="cta-button">View Prototype</a>
+            <a href="#" class="cta-button" style="background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);">Read Documentation</a>
+        </section>
+
+        <footer>
+            <p>🌱 Green Lens - Making AI Sustainable, One Query at a Time</p>
+            <p style="margin-top: 10px;">Built for positive environmental impact</p>
+        </footer>
+    </div>
+</body>
+</html>
